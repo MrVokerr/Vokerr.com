@@ -81,6 +81,15 @@ function App() {
           ))}
         </div>
 
+        {/* Discord Section */}
+        <div className="flex flex-col items-center gap-2 px-6 py-4 rounded-2xl border border-neutral-900 bg-neutral-900/30 text-neutral-400">
+          <p className="text-xs uppercase tracking-widest font-medium opacity-50">Connect with me</p>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-mono bg-neutral-800 px-3 py-1 rounded-md text-neutral-300">vokerr</span>
+            <span className="text-xs text-neutral-500">on Discord</span>
+          </div>
+        </div>
+
         {/* Footer */}
         <footer className="mt-12 pt-8 border-t border-neutral-900 text-center text-sm text-neutral-600">
           <p>© {new Date().getFullYear()} Vokerr. All rights reserved.</p>
