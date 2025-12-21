@@ -89,11 +89,6 @@ function App() {
             <span className="text-xs text-neutral-500">on Discord</span>
           </div>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-neutral-900 text-center text-sm text-neutral-600">
-          <p>© {new Date().getFullYear()} Vokerr. All rights reserved.</p>
-        </footer>
       </div>
     </div>
   );
