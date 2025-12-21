@@ -33,8 +33,8 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-neutral-950 text-neutral-200 selection:bg-neutral-800 flex justify-center">
-      <div className="max-w-xl w-full px-6 py-20 flex flex-col gap-12 items-center text-center">
+    <div className="min-h-screen w-full bg-neutral-950 text-neutral-200 selection:bg-neutral-800 flex items-center justify-center p-6">
+      <div className="max-w-xl w-full py-12 flex flex-col gap-12 items-center text-center">
         
         {/* Header */}
         <header className="flex flex-col gap-6 items-center">
