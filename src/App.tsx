@@ -10,11 +10,18 @@ function App() {
       color: "hover:border-purple-500 hover:text-purple-400"
     },
     {
-      title: "MTG Commander Quiz",
-      description: "Test your Magic: The Gathering Commander knowledge",
+      title: "Commander Quest",
+      description: "Discover your true EDH identity. Answer a series of questions to find the commanders that perfectly match your playstyle.",
       icon: <ScrollText className="w-6 h-6" />,
       url: "https://creative-cuchufli-04d46d.netlify.app/",
       color: "hover:border-blue-500 hover:text-blue-400"
+    },
+    {
+      title: "MTG Board State",
+      description: "A browser-based tool that digitizes your Magic: The Gathering board state",
+      icon: <ScrollText className="w-6 h-6" />,
+      url: "https://mtg-board-state.netlify.app/",
+      color: "hover:border-orange-500 hover:text-orange-400"
     },
     {
       title: "ArcheAge Fishing",
