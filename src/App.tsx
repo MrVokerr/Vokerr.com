@@ -17,6 +17,13 @@ function App() {
       color: "hover:border-blue-500 hover:text-blue-400"
     },
     {
+      title: "MTG Keywords",
+      description: "An index of MTG keywords",
+      icon: <ScrollText className="w-6 h-6" />,
+      url: "https://mtgkeywords.netlify.app/",
+      color: "hover:border-cyan-500 hover:text-cyan-400"
+    },
+    {
       title: "MTG Board State",
       description: "A browser-based tool that digitizes your Magic: The Gathering board state",
       icon: <ScrollText className="w-6 h-6" />,
