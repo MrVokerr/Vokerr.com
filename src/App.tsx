@@ -304,13 +304,13 @@ function Slice({ project: p, isActive, expandedW, onSelect }: {
   const [flipped, setFlipped] = useState(false);
   const winW = useWindowWidth();
   const collW = winW < 640 ? 56 : COLLAPSED_W;
-  useEffect(() => { if (!isActive) setFlipped(false); }, [isActive]);
+    const isMob = winW < 640;
 
   return (
     <motion.div
       data-id={p.id}
       animate={{ width: isActive ? expandedW : collW }}
-      transition={{ duration: ANIM_MS / 1000, ease: [0, 0, 0.58, 1] }}
+      transition={{ duration: isMob ? 0.15 : ANIM_MS / 1000, ease: [0, 0, 0.58, 1] }}
       onClick={onSelect}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
@@ -318,12 +318,14 @@ function Slice({ project: p, isActive, expandedW, onSelect }: {
         position: 'relative', height: '100%', flexShrink: 0,
         marginRight: -(SKEW - 2), cursor: 'pointer',
         zIndex: isActive ? 100 : hov ? 90 : 1,
-        filter: isActive
+        filter: isMob
+          ? (isActive ? `drop-shadow(0 0 6px ${p.accentColor}88)` : 'none')
+          : isActive
           ? `drop-shadow(0 0 14px ${p.accentColor}99) drop-shadow(3px 8px 14px rgba(0,0,0,0.75))`
           : hov
           ? `drop-shadow(0 0 8px ${p.accentColor}55) drop-shadow(2px 6px 10px rgba(0,0,0,0.6))`
           : 'drop-shadow(2px 5px 8px rgba(0,0,0,0.5))',
-        transition: `filter ${ANIM_MS}ms`,
+        transition: isMob ? 'none' : `filter ${ANIM_MS}ms`,
       }}
     >
       {/* Drop shadow shape */}
@@ -727,6 +729,7 @@ function HexCell({
       onMouseLeave={() => setHov(false)}
       style={{
         position: 'absolute',
+        left: '50%', top: '50%',
         width: hexW, height: hexH,
         cursor: role !== 'hidden' ? 'pointer' : 'default',
         // Center the hex around its own middle
@@ -870,12 +873,20 @@ function HexLayout({
   return (
     <div
       style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}
-      onPointerDown={e => { dragStartX.current = e.clientX; }}
+      onPointerDown={e => { if (e.pointerType !== 'touch') dragStartX.current = e.clientX; }}
       onPointerUp={e => {
-        if (dragStartX.current === null) return;
+        if (e.pointerType === 'touch' || dragStartX.current === null) return;
         const dx = e.clientX - dragStartX.current;
         dragStartX.current = null;
         if (Math.abs(dx) > 50) dx < 0 ? goTo(activeIdx + 1, 'right') : goTo(activeIdx - 1, 'left');
+      }}
+      onPointerCancel={() => { dragStartX.current = null; }}
+      onTouchStart={e => { dragStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={e => {
+        if (dragStartX.current === null) return;
+        const dx = e.changedTouches[0].clientX - dragStartX.current;
+        dragStartX.current = null;
+        if (Math.abs(dx) > 40) dx < 0 ? goTo(activeIdx + 1, 'right') : goTo(activeIdx - 1, 'left');
       }}
     >
       {/* Hex stage */}
@@ -970,7 +981,8 @@ function App() {
     : PROJECTS.filter(p => p.categories.includes(activeFilter));
 
   const activeIndex = visible.findIndex(p => p.id === activeId);
-  const trackOffset = windowWidth / 2 - (activeIndex * COLLAPSED_W + expandedW / 2);
+  const collapsedW = isMobile ? 56 : COLLAPSED_W;
+  const trackOffset = windowWidth / 2 - (activeIndex * (collapsedW - (SKEW - 2)) + expandedW / 2);
 
   // Fix active when filter hides it
   useEffect(() => {
@@ -1068,7 +1080,7 @@ function App() {
                     else setActiveId(vis[(idx - 1 + n) % n].id);
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'stretch', height: '100%', width: 'max-content', transform: `translateX(${trackOffset}px)`, transition: `transform ${ANIM_MS}ms ease` }}>
+                  <div style={{ display: 'flex', alignItems: 'stretch', height: '100%', width: 'max-content', transform: `translateX(${trackOffset}px)`, transition: `transform ${isMobile ? 150 : ANIM_MS}ms ease`, willChange: 'transform' }}>
                     {visible.map(p => (
                       <Slice key={p.id} project={p} isActive={p.id === activeId} expandedW={expandedW} onSelect={() => setActiveId(p.id)} />
                     ))}
