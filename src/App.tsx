@@ -69,7 +69,7 @@ const PROJECTS: Project[] = [
     gradient: 'linear-gradient(145deg, #0f1e10 0%, #166534 55%, #052e16 100%)',
     accentColor: '#22c55e',
     preview: '/previews/mtg-keywords.png',
-    previewObjectPosition: '-50px top',
+    previewObjectPosition: '8% top',
   },
   {
     id: 'mtg-board-state',
@@ -85,7 +85,7 @@ const PROJECTS: Project[] = [
     gradient: 'linear-gradient(145deg, #0a1a08 0%, #3d6b21 55%, #1a2e0a 100%)',
     accentColor: '#84cc16',
     preview: '/previews/mtg-board-state.png',
-    previewObjectPosition: '-250px top',
+    previewObjectPosition: '39% top',
   },
   {
     id: 'commander-quest',
@@ -101,7 +101,7 @@ const PROJECTS: Project[] = [
     gradient: 'linear-gradient(145deg, #0a1628 0%, #1e40af 55%, #0d1f4a 100%)',
     accentColor: '#60a5fa',
     preview: '/previews/commander-quest.png',
-    previewObjectPosition: '-350px top',
+    previewObjectPosition: '54% top',
   },
   {
     id: 'infinity-v',
@@ -117,7 +117,7 @@ const PROJECTS: Project[] = [
     gradient: 'linear-gradient(145deg, #0d0a1e 0%, #312e81 55%, #1e1b4b 100%)',
     accentColor: '#818cf8',
     preview: '/previews/infinity-v.png',
-    previewObjectPosition: '-250px top',
+    previewObjectPosition: '39% top',
   },
   {
     id: 'archeage-fishing',
@@ -133,7 +133,7 @@ const PROJECTS: Project[] = [
     gradient: 'linear-gradient(145deg, #0f1a1a 0%, #0f766e 55%, #042f2a 100%)',
     accentColor: '#2dd4bf',
     preview: '/previews/archeage-fishing.png',
-    previewObjectPosition: '-350px top',
+    previewObjectPosition: '54% top',
   },
   {
     id: 'mineral-z',
@@ -149,7 +149,7 @@ const PROJECTS: Project[] = [
     gradient: 'linear-gradient(145deg, #1f0a0a 0%, #991b1b 55%, #450a0a 100%)',
     accentColor: '#f87171',
     preview: '/previews/mineral-z.png',
-    previewObjectPosition: '-350px top',
+    previewObjectPosition: '54% top',
   },
 ];
 
