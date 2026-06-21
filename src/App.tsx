@@ -160,6 +160,15 @@ const FILTERS = [
   { id: 'mtg',  label: 'MTG'  },
 ];
 
+function getProjectUrl(p: Project): string | null {
+  return p.demo ?? p.github;
+}
+
+function openProjectUrl(p: Project) {
+  const url = getProjectUrl(p);
+  if (url) window.open(url, '_blank', 'noopener,noreferrer');
+}
+
 /* ─── GlowBorder ─────────────────────────────────────── */
 function GlowBorder({ isActive, isHovered }: { isActive: boolean; isHovered: boolean }) {
   const stroke = isActive ? '#7dd3fc' : isHovered ? 'rgba(125,211,252,0.4)' : 'rgba(0,0,0,0.55)';
@@ -304,14 +313,22 @@ function Slice({ project: p, isActive, expandedW, onSelect }: {
   const [flipped, setFlipped] = useState(false);
   const winW = useWindowWidth();
   const collW = winW < 640 ? 56 : COLLAPSED_W;
-    const isMob = winW < 640;
+  const isMob = winW < 640;
+
+  const handleSliceClick = () => {
+    if (isActive && !flipped) {
+      openProjectUrl(p);
+      return;
+    }
+    onSelect();
+  };
 
   return (
     <motion.div
       data-id={p.id}
       animate={{ width: isActive ? expandedW : collW }}
       transition={{ duration: isMob ? 0.15 : ANIM_MS / 1000, ease: [0, 0, 0.58, 1] }}
-      onClick={onSelect}
+      onClick={handleSliceClick}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
@@ -634,7 +651,11 @@ function SpotlightLayout({ visible, activeId, setActiveId }: { visible: Project[
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.22 }}
-            style={{ position: 'absolute', inset: 0 }}
+            onClick={() => { if (!flipped && active) openProjectUrl(active); }}
+            style={{
+              position: 'absolute', inset: 0,
+              cursor: !flipped && active && getProjectUrl(active) ? 'pointer' : undefined,
+            }}
           >
             {!flipped ? (
               <>
@@ -695,7 +716,7 @@ const HEX_CLIP = [
 ].join(',');
 
 function HexCell({
-  p, role, onClick, hexW, hexH,
+  p, role, onClick: onSelect, hexW, hexH,
 }: {
   p: Project;
   role: 'active' | 'prev' | 'next' | 'prev2' | 'next2' | 'hidden';
@@ -724,7 +745,13 @@ function HexCell({
     <motion.div
       animate={{ x, y, scale, opacity, zIndex: z }}
       transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
-      onClick={role !== 'hidden' ? onClick : undefined}
+      onClick={role !== 'hidden' ? () => {
+        if (isActive && !flipped) {
+          openProjectUrl(p);
+          return;
+        }
+        onSelect();
+      } : undefined}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
