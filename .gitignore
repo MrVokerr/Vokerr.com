@@ -15,6 +15,14 @@ dist
 dist-ssr
 *.local
 .wrangler
+.venv/
+.env
+.env.*
+!.env.example
+*.pem
+
+# Local Cursor agent notes (dual-written globally; not part of the site)
+_agent_memory/
 
 # Editor directories and files
 .vscode/*

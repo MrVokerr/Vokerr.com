@@ -72,22 +72,6 @@ const PROJECTS: Project[] = [
     previewObjectPosition: '8% top',
   },
   {
-    id: 'mtg-board-state',
-    title: 'MTG Board State',
-    badge: 'MTG',
-    categories: ['tool', 'mtg'],
-    tags: ['MTG', 'Board Tracker', 'Browser Tool'],
-    desc: 'A browser-based tool that digitizes and tracks your Magic: The Gathering board state.',
-    longDesc: 'Lay out your battlefield digitally to help opponents understand complex board states, resolve cascading triggers, and track counters without pen and paper. Runs entirely in the browser — no account or install needed.',
-    tech: ['React', 'Vite', 'Cloudflare Pages'],
-    github: null,
-    demo: 'https://mtg-board-state.pages.dev/',
-    gradient: 'linear-gradient(145deg, #0a1a08 0%, #3d6b21 55%, #1a2e0a 100%)',
-    accentColor: '#84cc16',
-    preview: '/previews/mtg-board-state.png',
-    previewObjectPosition: '39% top',
-  },
-  {
     id: 'commander-quest',
     title: 'Commander Quest',
     badge: 'MTG',
@@ -102,6 +86,22 @@ const PROJECTS: Project[] = [
     accentColor: '#60a5fa',
     preview: '/previews/commander-quest.png',
     previewObjectPosition: '54% top',
+  },
+  {
+    id: 'ms-v83-sim',
+    title: 'MapleStory Sim',
+    badge: 'MS',
+    categories: ['tool', 'game'],
+    tags: ['MapleStory', 'v83', 'Simulator', 'Scrolling'],
+    desc: 'A pre-Big Bang MapleStory v83 scrolling simulator with paperdoll, live DPS, and a boss matrix.',
+    longDesc: 'A scrolling sandbox meets combat calculator. Enchant gear at 1:1 pre-Big Bang rates, dress the paperdoll, then check live DPS against the boss matrix. Built for v83 players who want to know if a scroll path actually clears before they spend the mesos.',
+    tech: ['Vanilla JS', 'HTML/CSS', 'Cloudflare Workers'],
+    github: null,
+    demo: 'https://ms-v83-sim.vkrlabs.workers.dev/',
+    gradient: 'linear-gradient(145deg, #1a0c04 0%, #c2410c 55%, #431407 100%)',
+    accentColor: '#fb923c',
+    preview: '/previews/ms-v83-sim-hires.png',
+    previewObjectPosition: '18% top',
   },
   {
     id: 'infinity-v',
@@ -1041,7 +1041,7 @@ function App() {
   /* ─── render ─── */
 
   return (
-    <div style={shell}>
+    <div style={shell} data-build="20260819-assets-fix">
 
       {/* ── HEADER ── */}
       <header style={{
