@@ -1,0 +1,45 @@
+name: Security checks
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets-and-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install gitleaks
+        run: |
+          VERSION=8.30.1
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz" -o /tmp/gitleaks.tgz
+          tar -xzf /tmp/gitleaks.tgz -C /tmp gitleaks
+          sudo mv /tmp/gitleaks /usr/local/bin/gitleaks
+          rm -f /tmp/gitleaks.tgz
+          gitleaks version
+
+      - name: Gitleaks git history (redacted, no report file)
+        run: gitleaks detect --redact --no-banner --exit-code 1
+
+      - name: Gitleaks working tree (redacted, no report file)
+        run: gitleaks detect --no-git --redact --no-banner --exit-code 1 --source .
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm audit --omit=dev --audit-level=high
+
+      - run: npm run build
+
+      - run: npm run check:public

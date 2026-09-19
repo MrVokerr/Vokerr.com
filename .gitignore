@@ -1,6 +1,3 @@
-# This file
-.gitignore
-
 # Logs
 logs
 *.log
@@ -19,7 +16,15 @@ dist-ssr
 .env
 .env.*
 !.env.example
+.dev.vars
+.dev.vars.*
 *.pem
+*.key
+id_rsa
+id_ed25519
+credentials.json
+*.map
+.ai_scratchpad.md
 
 # Local Cursor agent notes (dual-written globally; not part of the site)
 _agent_memory/

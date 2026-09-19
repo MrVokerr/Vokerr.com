@@ -1,6 +1,7 @@
 {
   "name": "vokerrcom",
   "compatibility_date": "2026-01-14",
+  // Static Pages upload of dist/ only. Do not put secrets or API tokens in vars.
   "assets": {
     "directory": "./dist"
   }
