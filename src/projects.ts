@@ -1,3 +1,5 @@
+const BASE = import.meta.env.BASE_URL;
+
 export type Category = 'game' | 'tool' | 'mtg';
 
 export interface Project {
@@ -34,7 +36,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/MrVokerr',
     demo: null,
     accent: '#7dd3fc',
-    preview: '/previews/github',
+    preview: `${BASE}previews/github`,
     previewSize: [1285, 626],
     previewObjectPosition: 'left top',
   },
@@ -50,10 +52,10 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://keyword-webpage.pages.dev/',
     accent: '#e3b341',
-    preview: '/previews/mtg-keywords',
+    preview: `${BASE}previews/mtg-keywords`,
     previewSize: [1461, 1195],
-    previewVideo: '/previews/mtg-keywords.mp4',
-    previewPoster: '/previews/mtg-keywords-poster.webp',
+    previewVideo: `${BASE}previews/mtg-keywords.mp4`,
+    previewPoster: `${BASE}previews/mtg-keywords-poster.webp`,
     previewObjectPosition: '8% top',
   },
   {
@@ -68,7 +70,7 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://mtg-c-quest.pages.dev/',
     accent: '#60a5fa',
-    preview: '/previews/commander-quest',
+    preview: `${BASE}previews/commander-quest`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 30%',
   },
@@ -84,7 +86,7 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://ms-v83-sim.vkrlabs.workers.dev/',
     accent: '#fb923c',
-    preview: '/previews/ms-v83-sim',
+    preview: `${BASE}previews/ms-v83-sim`,
     previewSize: [1600, 804],
     previewObjectPosition: '18% top',
   },
@@ -100,7 +102,7 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://infinity-v.vercel.app',
     accent: '#c084fc',
-    preview: '/previews/infinity-v',
+    preview: `${BASE}previews/infinity-v`,
     previewSize: [1600, 804],
     previewObjectPosition: '39% top',
   },
@@ -116,7 +118,7 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://vfishinggame.vercel.app/',
     accent: '#2dd4bf',
-    preview: '/previews/archeage-fishing',
+    preview: `${BASE}previews/archeage-fishing`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 50%',
   },
@@ -132,7 +134,7 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://vokerr-mineral-z.vercel.app/',
     accent: '#f87171',
-    preview: '/previews/mineral-z',
+    preview: `${BASE}previews/mineral-z`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 50%',
   },
