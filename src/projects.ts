@@ -21,6 +21,8 @@ export interface Project {
   previewVideo?: string;
   previewPoster?: string;
   previewObjectPosition?: string;
+  /** Zooms screenshots whose UI only fills a small part of the frame (origin is previewObjectPosition). */
+  previewZoom?: number;
 }
 
 // Accents step evenly around the OKLCH hue wheel (same lightness), so the list reads as one colour run.
@@ -86,7 +88,8 @@ export const PROJECTS: Project[] = [
     accent: '#acd476',
     preview: `${BASE}previews/commander-quest`,
     previewSize: [1600, 804],
-    previewObjectPosition: '50% 30%',
+    previewObjectPosition: '50% 42%',
+    previewZoom: 1.8,
   },
   {
     id: 'mossfall',
@@ -148,6 +151,7 @@ export const PROJECTS: Project[] = [
     preview: `${BASE}previews/archeage-fishing`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 50%',
+    previewZoom: 1.7,
   },
   {
     id: 'mineral-z',
@@ -164,6 +168,7 @@ export const PROJECTS: Project[] = [
     preview: `${BASE}previews/mineral-z`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 50%',
+    previewZoom: 2.1,
   },
 ];
 

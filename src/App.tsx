@@ -41,7 +41,10 @@ const accentStyle = (p: Project) => ({ '--accent': p.accent }) as CSSProperties;
 function Preview({ p, eager, sizes }: { p: Project; eager?: boolean; sizes: string }) {
   const reduceMotion = useMedia('(prefers-reduced-motion: reduce)');
   const videoRef = useRef<HTMLVideoElement>(null);
-  const style = { objectPosition: p.previewObjectPosition } as CSSProperties;
+  const style = {
+    objectPosition: p.previewObjectPosition,
+    ...(p.previewZoom && { scale: String(p.previewZoom), transformOrigin: p.previewObjectPosition }),
+  } as CSSProperties;
 
   if (!p.preview || !p.previewSize) {
     return (
@@ -270,7 +273,7 @@ function Card({ p, i }: { p: Project; i: number }) {
   const ref = useReveal<HTMLLIElement>();
   const url = projectUrl(p);
   return (
-    <li className="card" ref={ref} style={{ ...accentStyle(p), '--i': i } as CSSProperties}>
+    <li className="card" ref={ref} data-card={p.id} style={{ ...accentStyle(p), '--i': i } as CSSProperties}>
       <a className="frame" href={url ?? undefined} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden>
         <Preview p={p} eager={i === 0} sizes="(min-width: 640px) 600px, 100vw" />
         <span className="wipe" />
@@ -302,6 +305,20 @@ export default function App() {
   const visible = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(filter));
   const active = visible.find(p => p.id === activeId) ?? visible[0];
 
+  // On phones there is no hover, so the card crossing the middle of the screen
+  // becomes the active one and tints the page (wordmark cut, filters) to match.
+  useEffect(() => {
+    if (wide || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        const id = (e.target as HTMLElement).dataset.card;
+        if (e.isIntersecting && id) setActiveId(id);
+      }
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('[data-card]').forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, [wide, filter]);
+
   const changeFilter = useCallback((f: 'all' | Category) => {
     setFilter(f);
     const vis = f === 'all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(f));
@@ -309,7 +326,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="page" style={wide ? accentStyle(active) : undefined}>
+    <div className="page" style={accentStyle(active)}>
       <a className="skip" href="#work">Skip to projects</a>
       <Hero />
 
