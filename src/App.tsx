@@ -154,10 +154,7 @@ function Hero() {
           <line x1="-2" y1="63" x2="102" y2="41" vectorEffect="non-scaling-stroke" />
         </svg>
       </h1>
-      <p className="lede">
-        <strong>Hyperfixation at its finest.</strong>{' '}
-        Games and tools, each one built because I could not stop thinking about it.
-      </p>
+      <p className="lede">Hyperfixation at its finest.</p>
     </header>
   );
 }
