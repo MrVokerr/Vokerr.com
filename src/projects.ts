@@ -73,6 +73,9 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://mtg-hype.pages.dev/',
     accent: '#6bdeaa',
+    preview: `${BASE}previews/mtg-hype`,
+    previewSize: [1600, 821],
+    previewObjectPosition: '30% top',
   },
   {
     id: 'commander-quest',
@@ -103,6 +106,9 @@ export const PROJECTS: Project[] = [
     github: null,
     demo: 'https://mossfall.vokerr.com/',
     accent: '#e0c257',
+    preview: `${BASE}previews/mossfall`,
+    previewSize: [1600, 768],
+    previewObjectPosition: '50% 15%',
   },
   {
     id: 'ms-v83-sim',
