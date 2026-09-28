@@ -145,6 +145,10 @@ function Hero() {
     <header className="hero">
       <div className="topbar">
         <span className="role">Developer &amp; Creator</span>
+        <nav className="topnav" aria-label="Elsewhere">
+          <a className="navlink" href="https://github.com/MrVokerr" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden>↗</span></a>
+          <DiscordCopy />
+        </nav>
       </div>
       <h1 className="wordmark">
         <span className="wm wm-top">Vokerr</span>

@@ -634,9 +634,10 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── small screens ──────────────────────────────────── */
 @media (max-width: 520px) {
-  .topbar { flex-wrap: wrap; row-gap: 0; }
-  .topnav { margin-left: -8px; }
-  .role { font-size: 13px; }
+  .topnav { gap: 0; margin-right: -8px; }
+  .topbar .discord-hint { display: none; }
+  .topbar .navlink, .topbar .discord { font-size: 13px; }
+  .role { font-size: 12px; letter-spacing: 0.12em; }
   .navlink, .discord { padding: 0 8px; }
   .work-title { display: none; }
   .filters { width: 100%; justify-content: space-between; }
