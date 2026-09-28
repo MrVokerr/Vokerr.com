@@ -41,8 +41,16 @@ const accentStyle = (p: Project) => ({ '--accent': p.accent }) as CSSProperties;
 function Preview({ p, eager, sizes }: { p: Project; eager?: boolean; sizes: string }) {
   const reduceMotion = useMedia('(prefers-reduced-motion: reduce)');
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [w, h] = p.previewSize;
   const style = { objectPosition: p.previewObjectPosition } as CSSProperties;
+
+  if (!p.preview || !p.previewSize) {
+    return (
+      <div className="media placeholder" role="img" aria-label={p.title}>
+        <span>{p.title}</span>
+      </div>
+    );
+  }
+  const [w, h] = p.previewSize;
 
   if (p.previewVideo && !reduceMotion) {
     return (
@@ -147,8 +155,8 @@ function Hero() {
         </svg>
       </h1>
       <p className="lede">
-        I make browser games, a MapleStory simulator, and tools for Magic: The Gathering players.
-        Everything below runs in your browser.
+        <strong>Hyperfixation at its finest.</strong>{' '}
+        Games and tools, each one built because I could not stop thinking about it.
       </p>
     </header>
   );

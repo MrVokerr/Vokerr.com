@@ -21,7 +21,7 @@ Personal portfolio for Vokerr: a React + Vite SPA with a sliced wordmark hero, t
 
 ## Directory overview
 
-- `src/projects.ts` — the `PROJECTS` list (GitHub, MTG Keywords, Commander Quest, MapleStory Sim, InfinityV, Fishing Game, Mineral-Z)
+- `src/projects.ts` — the `PROJECTS` list (GitHub, Mossfall, MTG Keywords, Commander Quest, MTG Hype, MapleStory Sim, InfinityV, Fishing Game, Mineral-Z)
 - `src/App.tsx` — UI (hero, filters, desktop index + stage, mobile cards)
 - `src/main.tsx` / `src/index.css` — React mount and global styles
 - `public/previews/` — card screenshots as WebP (`<id>-800.webp` and `<id>-lg.webp`) plus the MTG Keywords MP4 clip and its poster

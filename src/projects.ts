@@ -14,15 +14,16 @@ export interface Project {
   github: string | null;
   demo: string | null;
   accent: string;
-  /** Base path of the preview, served as `${preview}-800.webp` and `${preview}-lg.webp`. */
-  preview: string;
+  /** Base path of the preview, served as `${preview}-800.webp` and `${preview}-lg.webp`. Without one, a styled title tile is shown. */
+  preview?: string;
   /** Intrinsic size of the `-lg` file, used for srcset and to reserve space. */
-  previewSize: [number, number];
+  previewSize?: [number, number];
   previewVideo?: string;
   previewPoster?: string;
   previewObjectPosition?: string;
 }
 
+// Accents step evenly around the OKLCH hue wheel (same lightness), so the list reads as one colour run.
 export const PROJECTS: Project[] = [
   {
     id: 'github',
@@ -35,10 +36,23 @@ export const PROJECTS: Project[] = [
     tech: ['Git', 'GitHub Actions', 'Open Source'],
     github: 'https://github.com/MrVokerr',
     demo: null,
-    accent: '#7dd3fc',
+    accent: '#72d1fe',
     preview: `${BASE}previews/github`,
     previewSize: [1285, 626],
     previewObjectPosition: 'left top',
+  },
+  {
+    id: 'mossfall',
+    title: 'Mossfall',
+    badge: 'GAME',
+    categories: ['game'],
+    tags: ['Action RPG', 'Side-Scroller', 'Godot'],
+    desc: 'An offline side-scrolling action RPG prototype built around readable, hard-hitting combat.',
+    longDesc: 'Combat animations and hitboxes share one lifecycle, so what you see is what hits. A macro-enabled hotbar, live DPS breakdowns, gear with affix crafting gated by item level, and a hardcore mode whose name-tag aura burns hotter as you climb.',
+    tech: ['Godot 4.7', '2D Renderer', 'JSON-driven data'],
+    github: null,
+    demo: 'https://mossfall.vokerr.com/',
+    accent: '#35dedf',
   },
   {
     id: 'mtg-keywords',
@@ -51,7 +65,7 @@ export const PROJECTS: Project[] = [
     tech: ['React', 'Vite', 'Cloudflare Pages'],
     github: null,
     demo: 'https://keyword-webpage.pages.dev/',
-    accent: '#e3b341',
+    accent: '#6bdeaa',
     preview: `${BASE}previews/mtg-keywords`,
     previewSize: [1461, 1195],
     previewVideo: `${BASE}previews/mtg-keywords.mp4`,
@@ -69,10 +83,23 @@ export const PROJECTS: Project[] = [
     tech: ['React', 'TypeScript', 'Vite', 'Cloudflare Pages'],
     github: null,
     demo: 'https://mtg-c-quest.pages.dev/',
-    accent: '#60a5fa',
+    accent: '#acd476',
     preview: `${BASE}previews/commander-quest`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 30%',
+  },
+  {
+    id: 'mtg-hype',
+    title: 'MTG Hype',
+    badge: 'MTG',
+    categories: ['tool', 'mtg'],
+    tags: ['MTG', 'Gallery', 'Set Browser'],
+    desc: 'A gallery for browsing Magic: The Gathering sets, with search and filters.',
+    longDesc: 'Step through Magic sets one at a time, search for specific cards, and filter the gallery down to what you are after. Works on desktop and phone.',
+    tech: ['Cloudflare Pages'],
+    github: null,
+    demo: 'https://mtg-hype.pages.dev/',
+    accent: '#e0c257',
   },
   {
     id: 'ms-v83-sim',
@@ -85,7 +112,7 @@ export const PROJECTS: Project[] = [
     tech: ['Vanilla JS', 'HTML/CSS', 'Cloudflare Workers'],
     github: null,
     demo: 'https://ms-v83-sim.vkrlabs.workers.dev/',
-    accent: '#fb923c',
+    accent: '#fdb171',
     preview: `${BASE}previews/ms-v83-sim`,
     previewSize: [1600, 804],
     previewObjectPosition: '18% top',
@@ -101,7 +128,7 @@ export const PROJECTS: Project[] = [
     tech: ['React 19', 'TypeScript', 'Vite', 'Vercel'],
     github: null,
     demo: 'https://infinity-v.vercel.app',
-    accent: '#c084fc',
+    accent: '#ffaba2',
     preview: `${BASE}previews/infinity-v`,
     previewSize: [1600, 804],
     previewObjectPosition: '39% top',
@@ -117,7 +144,7 @@ export const PROJECTS: Project[] = [
     tech: ['JavaScript', 'Canvas API', 'Vercel'],
     github: null,
     demo: 'https://vfishinggame.vercel.app/',
-    accent: '#2dd4bf',
+    accent: '#fea5cc',
     preview: `${BASE}previews/archeage-fishing`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 50%',
@@ -133,7 +160,7 @@ export const PROJECTS: Project[] = [
     tech: ['JavaScript', 'Canvas API', 'Vercel'],
     github: null,
     demo: 'https://vokerr-mineral-z.vercel.app/',
-    accent: '#f87171',
+    accent: '#e7a9fb',
     preview: `${BASE}previews/mineral-z`,
     previewSize: [1600, 804],
     previewObjectPosition: '50% 50%',
