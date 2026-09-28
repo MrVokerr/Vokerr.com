@@ -1,7 +1,7 @@
 <!-- update:auto:start -->
 # Vokerr.com
 
-Personal portfolio for Vokerr: a React + Vite SPA with parallelogram “slice” project cards (plus Spotlight and Hex layouts). Live at [vokerr.com](https://vokerr.com/) on Cloudflare Pages (`vokerrcom`).
+Personal portfolio for Vokerr: a React + Vite SPA with a sliced wordmark hero, then an angled project index with a live preview stage on desktop and stacked project cards on phones. Live at [vokerr.com](https://vokerr.com/) on Cloudflare Pages (`vokerrcom`).
 
 ## Quick Start
 
@@ -21,9 +21,10 @@ Personal portfolio for Vokerr: a React + Vite SPA with parallelogram “slice”
 
 ## Directory overview
 
-- `src/App.tsx` — UI and the `PROJECTS` card list (GitHub, MTG Keywords, Commander Quest, MapleStory Sim, InfinityV, Fishing Game, Mineral-Z)
+- `src/projects.ts` — the `PROJECTS` list (GitHub, MTG Keywords, Commander Quest, MapleStory Sim, InfinityV, Fishing Game, Mineral-Z)
+- `src/App.tsx` — UI (hero, filters, desktop index + stage, mobile cards)
 - `src/main.tsx` / `src/index.css` — React mount and global styles
-- `public/previews/` — card screenshots (`/previews/*.png`)
+- `public/previews/` — card screenshots as WebP (`<id>-800.webp` and `<id>-lg.webp`) plus the MTG Keywords MP4 clip and its poster
 - `public/_headers` / `public/_redirects` / `public/404.html` — Cloudflare Pages caching and SPA fallback
 - `wrangler.jsonc` — Cloudflare project name `vokerrcom` (Pages deploy still uses `--project-name=vokerrcom`; this file has no `pages_build_output_dir`)
 - `index.html` — app shell
@@ -40,5 +41,5 @@ No env files. Deploy target is Cloudflare Pages project **vokerrcom**. Custom do
 
 ## Architecture
 
-Single-page React 18 app (Vite 5, TypeScript, Tailwind, Framer Motion). Cards are data in `PROJECTS`; three layouts read that array. Hashed JS/CSS live under `/assets/`. `_redirects` serves `index.html` for unknown routes but **404s missing `/assets/*` and `/previews/*`** so a cache miss cannot return HTML with status 200 at a `.js` URL (browsers then refuse `type="module"` and the page stays blank). Immutable `Cache-Control` applies only to `/assets/*`.
+Single-page React 18 app (Vite 5, TypeScript, Tailwind base styles, plain CSS in `src/index.css`). Animations are CSS-only and limited to `transform`/`opacity`; `prefers-reduced-motion` turns them off. Fonts (Big Shoulders, Archivo, JetBrains Mono) are self-hosted via Fontsource. Cards are data in `PROJECTS`. Hashed JS/CSS live under `/assets/`. `_redirects` serves `index.html` for unknown routes but **404s missing `/assets/*` and `/previews/*`** so a cache miss cannot return HTML with status 200 at a `.js` URL (browsers then refuse `type="module"` and the page stays blank). Immutable `Cache-Control` applies only to `/assets/*`.
 <!-- update:auto:end -->
