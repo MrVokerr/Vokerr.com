@@ -237,19 +237,31 @@ function Stage({ p }: { p: Project }) {
         <Preview p={p} eager sizes="(min-width: 1400px) 800px, 58vw" />
         <span className="wipe" aria-hidden />
       </a>
-      <div className="stage-body" key={`${p.id}-body`}>
-        <div className="stage-meta rise" style={{ '--d': 0 } as CSSProperties}>
-          <span className="badge">{p.badge}</span>
-          <Tags p={p} />
-        </div>
-        <p className="stage-desc rise" style={{ '--d': 1 } as CSSProperties}>{p.desc}</p>
-        <p className="stage-long rise" style={{ '--d': 2 } as CSSProperties}>{p.longDesc}</p>
-        <div className="stage-foot rise" style={{ '--d': 3 } as CSSProperties}>
-          <Tech p={p} />
-          <Actions p={p} />
-        </div>
+      {/* Every project's text is laid out in the same grid cell (only the active one visible),
+          so the panel is always as tall as the longest entry and never resizes on hover. */}
+      <div className="stage-bodies">
+        {PROJECTS.map(q => (q.id === p.id
+          ? <StageBody key={`${q.id}-active`} p={q} />
+          : <StageBody key={q.id} p={q} ghost />))}
       </div>
     </aside>
+  );
+}
+
+function StageBody({ p, ghost }: { p: Project; ghost?: boolean }) {
+  return (
+    <div className={ghost ? 'stage-body ghost' : 'stage-body'} aria-hidden={ghost || undefined}>
+      <div className="stage-meta rise" style={{ '--d': 0 } as CSSProperties}>
+        <span className="badge">{p.badge}</span>
+        <Tags p={p} />
+      </div>
+      <p className="stage-desc rise" style={{ '--d': 1 } as CSSProperties}>{p.desc}</p>
+      <p className="stage-long rise" style={{ '--d': 2 } as CSSProperties}>{p.longDesc}</p>
+      <div className="stage-foot rise" style={{ '--d': 3 } as CSSProperties}>
+        <Tech p={p} />
+        <Actions p={p} />
+      </div>
+    </div>
   );
 }
 
