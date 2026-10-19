@@ -207,24 +207,22 @@ function IndexList({ visible, active, setActive }: {
   return (
     <ol className="index" ref={listRef} key={visible.map(p => p.id).join()}>
       {visible.map((p, i) => {
-        const url = projectUrl(p);
         const isActive = p.id === active.id;
         return (
           <li key={p.id} style={{ ...accentStyle(p), '--i': i } as CSSProperties}>
-            <a
+            <button
+              type="button"
               className="row"
               data-id={p.id}
               data-active={isActive || undefined}
-              href={url ?? undefined}
-              target="_blank"
-              rel="noopener noreferrer"
+              aria-pressed={isActive}
+              onClick={() => setActive(p.id)}
               onMouseEnter={() => setActive(p.id)}
               onFocus={() => setActive(p.id)}
             >
               <span className="row-badge">{p.badge}</span>
               <span className="row-title">{p.title}</span>
-              <span className="row-arrow" aria-hidden>↗</span>
-            </a>
+            </button>
           </li>
         );
       })}
@@ -280,9 +278,7 @@ function Card({ p, i }: { p: Project; i: number }) {
         <span className="badge card-badge">{p.badge}</span>
       </a>
       <div className="card-body">
-        <h3 className="card-title">
-          <a href={url ?? undefined} target="_blank" rel="noopener noreferrer">{p.title}</a>
-        </h3>
+        <h3 className="card-title">{p.title}</h3>
         <p className="card-desc">{p.desc}</p>
         <Tags p={p} />
         <details className="more">
