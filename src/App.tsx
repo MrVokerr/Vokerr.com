@@ -222,6 +222,7 @@ function IndexList({ visible, active, setActive }: {
             >
               <span className="row-badge">{p.badge}</span>
               <span className="row-title">{p.title}</span>
+              <span className="row-arrow" aria-hidden>↗</span>
             </button>
           </li>
         );
